@@ -1,0 +1,37 @@
+<!--{{listado | json}}-->
+<div class="divisor">
+  <div class="left">
+    <input type="text" placeholder="Search"  [(ngModel)]="terminoBusqueda" class="text" (input)="datosFiltrados()"/>
+  </div>
+  <div class="rigth">
+    <button (click)="redirec()" class="confimarcion" >Agregar</button>
+  </div>
+</div>
+<br/>
+<table class="table table-bordered">
+  <thead class="encabezado-tabla">
+  <tr>
+    <th>Logo</th> 
+    <th>Nombre del producto</th>
+    <th>Descripcion </th>
+    <th>Fecha de liberacion</th>
+    <th>Fecha de reestrcuturación</th>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody class="cuerpo-tabla">
+  <tr  *ngFor="let dato of listado" (click)="seleccionarFila(dato)" >
+    <td style="justify-content: center;"><img  src="{{dato.logo}}" width="50px" ></td>
+    <td>{{dato.name}}</td>
+    <td>{{dato.description}}</td>
+    <td>{{dato.date_release | date: 'dd/MM/yyyy'}}</td>
+    <td>{{dato.date_revision | date: 'dd/MM/yyyy'}}</td>
+    <td>
+      <button (click)="eliminar(dato.id)" >
+        <img src="./assets/img/puntos.png" width="15px">
+      </button>
+    </td>
+  </tr>
+
+  </tbody>
+</table>

@@ -1,0 +1,72 @@
+
+
+<h1>Formulario de Registro</h1>
+<hr>
+<form [formGroup]="formulario" (ngSubmit)="agregarProducto()">
+    <div class="divisor">
+        <div class="left">
+            <label for="id" class="flex-row-ba">ID:</label>
+            <input id="id" formControlName="id" class="flex-row-bb" type="text" [disabled]="this.isActualizar">
+            <div *ngIf="formulario.get('id') && formulario.get('id')?.invalid && formulario.get('id')?.touched">
+                <span class="este-campo-esret" *ngIf="formulario.get('id')?.errors">El ID es requerido</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('id')?.errors">El ID debe tener al menos 3 caracteres</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('id')?.errors">El ID no debe exceder los 10 caracteres</span>
+            </div>
+        </div>
+        <div class="left">
+            <label for="name" class="flex-row-ba" >Nombre:</label>
+            <input id="name" formControlName="name" class="flex-row-bb" type="text">
+            <div *ngIf="formulario.get('name')?.invalid && formulario.get('name')?.touched">
+                <span class="este-campo-esret"  *ngIf="formulario.get('name')?.errors">El name es requerido</span>
+                <span class="este-campo-esret"  *ngIf="formulario.get('name')?.errors">El name debe tener al menos 5 caracteres</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('name')?.errors">El name no debe exceder los 100 caracteres</span>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="divisor">
+        <div class="left">
+            <label for="descripcion" class="flex-row-ba">Descripción:</label>
+            <input id="descripcion" class="flex-row-bb" formControlName="description"/>
+            <div *ngIf="formulario.get('description')?.invalid && formulario.get('description')?.touched">
+                <span class="este-campo-esret" *ngIf="formulario.get('description')?.errors">La descripción es requerida</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('description')?.errors">La descripción debe tener al menos 10 caracteres</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('description')?.errors">La descripción no debe exceder los 200 caracteres</span>
+            </div>
+        </div>
+
+        <div class="left">
+            <label for="logo" class="flex-row-ba">Logo:</label>
+            <input id="logo" formControlName="logo" type="text" class="flex-row-bb">
+            <div *ngIf="formulario.get('logo')?.invalid && formulario.get('logo')?.touched">
+                <span class="este-campo-esret" *ngIf="formulario.get('logo')?.errors">El name es requerido</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('logo')?.errors">El name debe tener al menos 5 caracteres</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('logo')?.errors">El name no debe exceder los 100 caracteres</span>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="divisor">
+        <div class="left">
+            <label for="date_release" class="flex-row-ba">Fecha de Liberación:</label>
+            <input id="date_release" formControlName="date_release" [min]="isActualizar ? '' : fechaHoy " 
+            type="date" class="flex-row-bb">
+            <div *ngIf="formulario.get('date_release')?.invalid && formulario.get('date_release')?.touched">
+                <span class="este-campo-esret">La fecha de liberación es requerida</span>
+            </div>
+        </div>
+
+        <div class="left">
+            <label for="date_revision" class="flex-row-ba">Fecha de Revisión:</label>
+            <input id="date_revision" formControlName="date_revision" [min]="isActualizar ? '' : fechaHoy " type="date" class="flex-row-bb">
+            <div *ngIf="formulario.get('date_revision')?.invalid && formulario.get('date_revision')?.touched">
+                <span class="este-campo-esret">La fecha de revisión es requerida</span>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="divisor" style="justify-content: center;"> 
+        <button type="button"  (click)="reiniciarFormulario()" class="cancelar left"  >Reiniciar</button>
+        <button type="submit" [disabled]="formulario.invalid" class="confimarcion left">Enviar</button>
+    </div>
+</form>
