@@ -11,8 +11,8 @@
             !formulario.get('id')?.valid }">
             <div *ngIf="formulario.get('id') && formulario.get('id')?.invalid && formulario.get('id')?.touched" >
                 <span class="este-campo-esret" *ngIf="formulario.get('id')?.hasError('required')">El ID es requerido</span>
-                <span class="este-campo-esret" *ngIf="formulario.get('id')?.hasError('minLength')">El ID debe tener al menos 3 caracteres</span>
-                <span class="este-campo-esret" *ngIf="formulario.get('id')?.hasError('maxLength')">El ID no debe exceder los 10 caracteres</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('id')?.hasError('minlength')">El ID debe tener al menos 3 caracteres</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('id')?.hasError('maxlength')">El ID no debe exceder los 10 caracteres</span>
             </div>
         </div>
         <div class="left">
@@ -22,8 +22,8 @@
             !formulario.get('name')?.valid }">
             <div *ngIf="formulario.get('name')?.invalid && formulario.get('name')?.touched">
                 <span class="este-campo-esret"  *ngIf="formulario.get('name')?.hasError('required')">El name es requerido</span>
-                <span class="este-campo-esret"  *ngIf="formulario.get('name')?.hasError('minLength')">El name debe tener al menos 5 caracteres</span>
-                <span class="este-campo-esret" *ngIf="formulario.get('name')?.hasError('maxLength')">El name no debe exceder los 100 caracteres</span>
+                <span class="este-campo-esret"  *ngIf="formulario.get('name')?.hasError('minlength')">El name debe tener al menos 5 caracteres</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('name')?.hasError('maxlength')">El name no debe exceder los 100 caracteres</span>
             </div>
         </div>
     </div>
@@ -31,19 +31,14 @@
     <div class="divisor">
         <div class="left">
             <label for="descripcion" class="flex-row-ba">Descripción:</label>
-            <input id="descripcion" class="flex-row-bb" (change)="prueba()" formControlName="description" [ngClass]="{'flex-row-bb-invalido': (formulario.get('description')?.touched ||
+            <input id="descripcion" class="flex-row-bb"  formControlName="description" [ngClass]="{'flex-row-bb-invalido': (formulario.get('description')?.touched ||
             formulario.get('description')?.dirty) &&
             !formulario.get('description')?.valid }"/>
             <div *ngIf="formulario.get('description')?.invalid && formulario.get('description')?.touched">
                 <span class="este-campo-esret" *ngIf="formulario.get('description')?.hasError('required')">La descripción es requerida</span>
-                <span class="este-campo-esret" *ngIf="formulario.get('description')?.hasError('minLength')">La descripción debe tener al menos 10 caracteres</span>
-                <span class="este-campo-esret" *ngIf="formulario.get('description')?.hasError('maxLength')">La descripción no debe exceder los 200 caracteres</span>
-            </div>  
-            <!-- {{formulario.get('description')?.hasError('required')}} -->
-            <!-- {{formulario.get('description')?.hasError('minLength')}}
-            {{formulario.get('description')?.hasError('maxLength')}}
-            {{formulario.get('description')?.errors | json}}
-            {{formulario.controls['description'] }} -->
+                <span class="este-campo-esret" *ngIf="formulario.get('description')?.hasError('minlength')">La descripción debe tener al menos 10 caracteres</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('description')?.hasError('maxlength')">La descripción no debe exceder los 200 caracteres</span>
+            </div> 
         </div>
 
         <div class="left">
@@ -53,8 +48,8 @@
             !formulario.get('logo')?.valid }">
             <div *ngIf="formulario.get('logo')?.invalid && formulario.get('logo')?.touched">
                 <span class="este-campo-esret" *ngIf="formulario.get('logo')?.hasError('required')">El logo es requerido</span>
-                <span class="este-campo-esret" *ngIf="formulario.get('logo')?.hasError('minLength')">El logo debe tener al menos 5 caracteres</span>
-                <span class="este-campo-esret" *ngIf="formulario.get('logo')?.hasError('maxLength')">El logo no debe exceder los 100 caracteres</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('logo')?.hasError('minlength')">El logo debe tener al menos 5 caracteres</span>
+                <span class="este-campo-esret" *ngIf="formulario.get('logo')?.hasError('maxlength')">El logo no debe exceder los 100 caracteres</span>
             </div>
        
         </div>

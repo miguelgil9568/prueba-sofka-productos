@@ -56,12 +56,6 @@ export class AgregarComponent implements OnInit {
       });
   }
 
-  prueba(){
-    const logoControl = this.formulario.get('description'); 
-    if (logoControl?.hasError('minLength')) {
-      console.log('El campo logo tiene un error de longitud mínima.');
-    }
-  }
 
   agregarProducto(): void {
     if (this.formulario.valid) {
