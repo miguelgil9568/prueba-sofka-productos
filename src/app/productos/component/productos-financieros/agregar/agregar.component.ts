@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductosFinancierosService } from 'src/app/services/productos-financieros.service';
 import { ProductoFinanciero } from 'src/app/share/interface/ProductoFinanciero';
@@ -28,22 +28,24 @@ export class AgregarComponent implements OnInit {
   ngOnInit(): void {
       this.route.paramMap.subscribe((params) => {
         // Obtén el valor del parámetro 'id' de la URL
-        this.id = params.get('id');
-        console.log('Parámetro id:', this.id); 
-        this.productosService.obtenerProductos().subscribe(
-          {next: (data) =>{ 
-            this.formulario.setValue(data.filter(producto => producto.id == this.id)[0]);
-            this.formulario.controls['date_release'].setValue(new Date(data.filter(producto => producto.id == this.id)[0].date_release).toISOString().split('T')[0])
-            this.formulario.controls['date_revision'].setValue(new Date(data.filter(producto => producto.id == this.id)[0].date_revision).toISOString().split('T')[0])
-            this.isActualizar = true;
-          },
-          error : () => { 
-            console.log('Se produjo un error');
-            alert('Se produjo un error');
+        if(params.get('id')) {
+            this.id = params.get('id');
+            console.log('Parámetro id:', this.id); 
+            this.productosService.obtenerProductos().subscribe(
+              {next: (data) =>{ 
+                this.formulario.setValue(data.filter(producto => producto.id == this.id)[0]);
+                this.formulario.controls['date_release'].setValue(new Date(data.filter(producto => producto.id == this.id)[0].date_release).toISOString().split('T')[0])
+                this.formulario.controls['date_revision'].setValue(new Date(data.filter(producto => producto.id == this.id)[0].date_revision).toISOString().split('T')[0])
+                this.isActualizar = true;
+              },
+              error : () => { 
+                console.log('Se produjo un error');
+                alert('Se produjo un error');
+              }
+              }
+            )
           }
-          }
-        )
-      });
+        });
       this.formulario = this.formBuilder.group({
           id: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
           name: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
@@ -52,6 +54,13 @@ export class AgregarComponent implements OnInit {
           date_release: ['', [Validators.required]],
           date_revision: ['', [Validators.required]]
       });
+  }
+
+  prueba(){
+    const logoControl = this.formulario.get('description'); 
+    if (logoControl?.hasError('minLength')) {
+      console.log('El campo logo tiene un error de longitud mínima.');
+    }
   }
 
   agregarProducto(): void {

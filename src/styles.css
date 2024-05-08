@@ -128,6 +128,18 @@ input {
   z-index: 26;
 }
 
+.flex-row-bb-invalido {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 90%;
+  height: 30px;
+  z-index: 26;
+  border-color: red
+}
+
+
 .este-campo-esret {
   display: grid;
   color: #e29e9c;
